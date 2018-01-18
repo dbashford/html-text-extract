@@ -2,17 +2,17 @@
 const jsdom = require('jsdom')
 const { JSDOM } = jsdom
 
-function handleAttributes(node) {
-	return node.getAttribute('alt') ? node.getAttribute('alt') : ''
+function handleAttributes(element) {
+	return element.getAttribute('alt') ? element.getAttribute('alt') : ''
 }
 
-function walkTextCore(node, Node, text) {
+function walkTextCore(element, Node, text) {
 	let newText = ''
-	for (const child of node.childNodes) {
+	for (const child of element.childNodes) {
 		switch (child.nodeType) {
 			case Node.ELEMENT_NODE:
 				if (newText
-					&& child !== node.firstChild
+					&& child !== element.firstChild
 					&& child.previousSibling.nodeType !== Node.TEXT_NODE) {
 					newText = newText + ' '
 				}
