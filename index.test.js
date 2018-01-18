@@ -24,3 +24,8 @@ it('adds a space between two headings and a paragraph', () => {
 	expect(hte('<h1>moo1</h1><h2>moo2</h2><p>moop</p>'))
 		.toEqual('moo1 moo2 moop')
 })
+
+it('extracts alt text from images', () => {
+	expect(hte('<img alt="description" src="...">'))
+		.toEqual('description')
+})

@@ -2,6 +2,10 @@
 const jsdom = require('jsdom')
 const { JSDOM } = jsdom
 
+function handleAttributes(node) {
+	return node.getAttribute('alt') ? node.getAttribute('alt') : ''
+}
+
 function walkTextCore(node, Node, text) {
 	let newText = ''
 	for (const child of node.childNodes) {
@@ -12,6 +16,7 @@ function walkTextCore(node, Node, text) {
 					&& child.previousSibling.nodeType !== Node.TEXT_NODE) {
 					newText = newText + ' '
 				}
+				newText = newText + handleAttributes(child)
 				newText = newText + walkTextCore(child, Node, text)
 				break
 			case Node.TEXT_NODE:
