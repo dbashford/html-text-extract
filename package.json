@@ -1,0 +1,27 @@
+{
+  "name": "html-text-extract",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Extract text from HTML fragments",
+  "keywords": [
+    "extract",
+    "html",
+    "text"
+  ],
+  "license": "MIT",
+  "author": "Matthew Tylee Atkinson",
+  "main": "index.js",
+  "scripts": {
+    "precommit": "npm test",
+    "test": "eslint . && jest"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "~4.15",
+    "husky": "~0.14",
+    "jest": "~22.1"
+  },
+  "jest": {
+    "collectCoverage": true
+  }
+}
