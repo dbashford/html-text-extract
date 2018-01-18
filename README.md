@@ -5,6 +5,11 @@ html-text-extract
 
 This is a simple tool to extract the text from HTML fragments.
 
+```javascript
+const hte = require('html-text-extract')
+hte('<h1>Welcome</h1><p>Hello, world!</p>')  // => 'Welcome Hello, world!'
+```
+
 Development
 -----------
 
