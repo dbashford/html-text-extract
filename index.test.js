@@ -81,3 +81,15 @@ describe('other attributes', () => {
 			.toEqual('Option Group')
 	})
 })
+
+describe('optionally ignoring <code>', () => {
+	it("doesn't usually ignore <code>", () => {
+		expect(hte('<p>Here is some <code>programming</code> code.</p>'))
+			.toEqual('Here is some programming code.')
+	})
+
+	it('ignores <code> if asked (double-spacing is acceptable)', () => {
+		expect(hte('<p>Here is some <code>programming</code> code.</p>', true))
+			.toEqual('Here is some  code.')
+	})
+})

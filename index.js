@@ -3,6 +3,7 @@ const jsdom = require('jsdom')
 const { JSDOM } = jsdom
 
 const attributes = ['alt', 'aria-label', 'title', 'placeholder', 'label']
+let ignoreCode
 
 function extractAttributes(element) {
 	const found = []
@@ -21,6 +22,8 @@ function walkTextCore(element, Node, text) {
 		let attributeText = null
 		switch (child.nodeType) {
 			case Node.ELEMENT_NODE:
+				if (ignoreCode && child.tagName === 'CODE') break
+
 				if (newText
 					&& child !== element.firstChild
 					&& child.previousSibling.nodeType !== Node.TEXT_NODE) {
@@ -54,7 +57,8 @@ function walkText(dom) {
 	return text
 }
 
-module.exports = function(html) {
+module.exports = function(html, ignoreCodeElements) {
+	ignoreCode = ignoreCodeElements
 	const dom = new JSDOM(html)
 	return walkText(dom)
 }

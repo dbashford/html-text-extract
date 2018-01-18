@@ -10,6 +10,19 @@ const hte = require('html-text-extract')
 hte('<h1>Welcome</h1><p>Hello, world!</p>')  // => 'Welcome Hello, world!'
 ```
 
+The `hte()` function takes two parameters:
+
+* `html` (string) containing the HTML code.
+* `ignoreCodeElements` (optional Boolean) controlling whether the contents of `<code>` tags are omitted from the extracted text.
+
+It returns a string that is the text extracted from the HTML.  The following attributes' values are also included:
+
+* `alt`
+* `aria-label`
+* `title`
+* `placeholder`
+* `label` (as used on an `<optgroup>`)
+
 Development
 -----------
 
