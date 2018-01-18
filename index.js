@@ -2,16 +2,21 @@
 const jsdom = require('jsdom')
 const { JSDOM } = jsdom
 
-function walkTextCore(node, dom, text) {
+function walkTextCore(node, Node, text) {
 	let newText = ''
 	for (const child of node.childNodes) {
-		if (child.nodeType === dom.window.Node.ELEMENT_NODE) {
-			if (newText && child !== node.firstChild && child.previousSibling.nodeType !== dom.window.Node.TEXT_NODE) {
-				newText = newText + ' '
-			}
-			newText = newText + walkTextCore(child, dom, text)
-		} else if (child.nodeType === dom.window.Node.TEXT_NODE) {
-			newText = newText + child.textContent
+		switch (child.nodeType) {
+			case Node.ELEMENT_NODE:
+				if (newText
+					&& child !== node.firstChild
+					&& child.previousSibling.nodeType !== Node.TEXT_NODE) {
+					newText = newText + ' '
+				}
+				newText = newText + walkTextCore(child, Node, text)
+				break
+			case Node.TEXT_NODE:
+				newText = newText + child.textContent
+				break
 		}
 	}
 	return text + newText
@@ -19,7 +24,7 @@ function walkTextCore(node, dom, text) {
 
 function walkText(dom) {
 	const body = dom.window.document.body
-	const text = walkTextCore(body, dom, '')
+	const text = walkTextCore(body, dom.window.Node, '')
 	return text
 }
 
