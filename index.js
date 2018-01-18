@@ -4,7 +4,7 @@ const { JSDOM } = jsdom
 
 const attributes = ['alt', 'aria-label', 'title', 'placeholder', 'label']
 
-function handleAttributes(element) {
+function extractAttributes(element) {
 	const found = []
 	for (const attribute of attributes) {
 		const value = element.getAttribute(attribute)
@@ -27,14 +27,13 @@ function walkTextCore(element, Node, text) {
 					newText = newText + ' '
 				}
 
-				attributeText = handleAttributes(child)
+				attributeText = extractAttributes(child)
 				if (attributeText) {
-					if (child.previousSibling
-						&& child.previousSibling.nodeType === Node.TEXT_NODE) {
+					if (child.previousSibling) {
 						newText = newText + ' '
 					}
 					newText = newText + attributeText
-					if ((child.nextSibling && child.nextSibling.nodeType === Node.TEXT_NODE) || child.childNodes.length > 0) {
+					if (child.nextSibling || child.childNodes.length > 0) {
 						newText = newText + ' '
 					}
 				}
