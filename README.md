@@ -21,4 +21,3 @@ Development
 ### Useful scripts
 
 * `npm test`&mdash;runs the tests (which also happens on pre-commit).
-* `npm run example`&mdash;runs the example script (it is expected that this returns an error, as it should correctly find a misspelling).
