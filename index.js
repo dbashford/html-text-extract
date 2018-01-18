@@ -6,6 +6,9 @@ function walkTextCore(node, dom, text) {
 	let newText = ''
 	for (const child of node.childNodes) {
 		if (child.nodeType === dom.window.Node.ELEMENT_NODE) {
+			if (newText && child === node.lastChild) {
+				newText = newText + ' '
+			}
 			newText = newText + walkTextCore(child, dom, text)
 		} else if (child.nodeType === dom.window.Node.TEXT_NODE) {
 			newText = newText + child.textContent
