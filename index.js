@@ -2,8 +2,17 @@
 const jsdom = require('jsdom')
 const { JSDOM } = jsdom
 
+const attributes = ['alt', 'aria-label', 'title', 'placeholder', 'label']
+
 function handleAttributes(element) {
-	return element.getAttribute('alt') ? element.getAttribute('alt') : null
+	const found = []
+	for (const attribute of attributes) {
+		const value = element.getAttribute(attribute)
+		if (value) {
+			found.push(value)
+		}
+	}
+	return found.join(' ')
 }
 
 function walkTextCore(element, Node, text) {
@@ -25,8 +34,7 @@ function walkTextCore(element, Node, text) {
 						newText = newText + ' '
 					}
 					newText = newText + attributeText
-					if (child.nextSibling
-						&& child.nextSibling.nodeType === Node.TEXT_NODE) {
+					if ((child.nextSibling && child.nextSibling.nodeType === Node.TEXT_NODE) || child.childNodes.length > 0) {
 						newText = newText + ' '
 					}
 				}

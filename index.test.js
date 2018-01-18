@@ -59,3 +59,25 @@ describe('alt text', () => {
 		})
 	})
 })
+
+describe('other attributes', () => {
+	test('aria-label', () => {
+		expect(hte('<button id="save" aria-label="Save"></button>'))
+			.toEqual('Save')
+	})
+
+	test('title', () => {
+		expect(hte('<a href="..." title="link title">link content</a>'))
+			.toEqual('link title link content')
+	})
+
+	test('placeholder', () => {
+		expect(hte('<input placeholder="Sample input" type="text">'))
+			.toEqual('Sample input')
+	})
+
+	test('label (optgroup)', () => {
+		expect(hte('<optgroup label="Option Group">'))
+			.toEqual('Option Group')
+	})
+})
