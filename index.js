@@ -3,12 +3,13 @@ const jsdom = require('jsdom')
 const { JSDOM } = jsdom
 
 function handleAttributes(element) {
-	return element.getAttribute('alt') ? element.getAttribute('alt') : ''
+	return element.getAttribute('alt') ? element.getAttribute('alt') : null
 }
 
 function walkTextCore(element, Node, text) {
 	let newText = ''
 	for (const child of element.childNodes) {
+		let attributeText = null
 		switch (child.nodeType) {
 			case Node.ELEMENT_NODE:
 				if (newText
@@ -16,7 +17,20 @@ function walkTextCore(element, Node, text) {
 					&& child.previousSibling.nodeType !== Node.TEXT_NODE) {
 					newText = newText + ' '
 				}
-				newText = newText + handleAttributes(child)
+
+				attributeText = handleAttributes(child)
+				if (attributeText) {
+					if (child.previousSibling
+						&& child.previousSibling.nodeType === Node.TEXT_NODE) {
+						newText = newText + ' '
+					}
+					newText = newText + attributeText
+					if (child.nextSibling
+						&& child.nextSibling.nodeType === Node.TEXT_NODE) {
+						newText = newText + ' '
+					}
+				}
+
 				newText = newText + walkTextCore(child, Node, text)
 				break
 			case Node.TEXT_NODE:

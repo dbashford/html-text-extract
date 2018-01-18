@@ -34,4 +34,16 @@ describe('alt text', () => {
 		expect(hte('<img alt="description" src="...">'))
 			.toEqual('description')
 	})
+
+	describe('spacing extracted alt text correctly', () => {
+		test('when the image has text preceeding it', () => {
+			expect(hte('<p>Image:<img alt="description" src="..."></p>'))
+				.toEqual('Image: description')
+		})
+
+		test('when the image has text after it', () => {
+			expect(hte('<p><img alt="description" src="...">Yeah!</p>'))
+				.toEqual('description Yeah!')
+		})
+	})
 })
