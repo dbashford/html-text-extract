@@ -15,7 +15,9 @@
     "precommit": "npm test",
     "test": "eslint . && jest"
   },
-  "dependencies": {},
+  "dependencies": {
+    "jsdom": "~11.5"
+  },
   "devDependencies": {
     "eslint": "~4.15",
     "husky": "~0.14",

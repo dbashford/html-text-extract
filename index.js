@@ -1,5 +1,8 @@
 'use strict'
+const jsdom = require('jsdom')
+const { JSDOM } = jsdom
 
 module.exports = function(html) {
-	return 'Hello, world!'
+	const dom = new JSDOM(html)
+	return dom.window.document.querySelector('p').textContent
 }
