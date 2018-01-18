@@ -27,6 +27,18 @@ describe('simple text extraction', () => {
 				.toEqual('moo1 moo2 moop')
 		})
 	})
+
+	describe('decodes character entities', () => {
+		test('ellipsis', () => {
+			expect(hte('<p>Well now&hellip;</p>'))
+				.toEqual('Well now…')
+		})
+
+		test('mdash', () => {
+			expect(hte('When we found the melon&mdash;not an easy task'))
+				.toEqual('When we found the melon—not an easy task')
+		})
+	})
 })
 
 describe('alt text', () => {
