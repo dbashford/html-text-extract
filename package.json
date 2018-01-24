@@ -1,6 +1,6 @@
 {
   "name": "html-text-extract",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "description": "Extract text from HTML fragments",
   "keywords": [
@@ -16,10 +16,10 @@
     "test": "eslint . && jest"
   },
   "dependencies": {
-    "jsdom": "~11.5"
+    "jsdom": "~11.6"
   },
   "devDependencies": {
-    "eslint": "~4.15",
+    "eslint": "~4.16",
     "husky": "~0.14",
     "jest": "~22.1"
   },

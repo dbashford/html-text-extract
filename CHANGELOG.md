@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+## [0.1.1](https://github.com/matatk/html-text-extract/compare/0.1.0...0.1.1) (2018-01-24)
+
+* Add changelog.
+* Bump dependencies.
+
 ## [0.1.0](https://github.com/matatk/html-text-extract/compare/0.0.0...0.1.0) (2018-01-18)
 
 * Extract text from HTML elements, including certain user-facing attributes (ignoring `<code>`).
